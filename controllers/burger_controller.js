@@ -8,7 +8,7 @@ let router = express.Router();
 router.get('/', function(req, res) {
     burger.selectAll(function(data) {
         let burgerObj = {
-            burger: data
+            burgers: data
         };
         console.log(burgerObj);
         res.render('index', burgerObj);
