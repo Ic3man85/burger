@@ -12,7 +12,7 @@ let orm = {
         });
     },
     insertOne: function(callback, burger) {
-        const query = "INSERT INTO burgers (burger_name) VALUES ?";
+        const query = "INSERT INTO burgers (burger_name) VALUES (?)";
         connection.query(query, [burger], function(err, result) {
             if (err) throw err;
             console.log(result);

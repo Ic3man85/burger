@@ -1,25 +1,29 @@
-let express = require('express');
-let bodyParser = require('body-parser');
-let exhbs = require('express-handlebars');
+let express = require("express");
 
 let PORT = process.env.PORT || 8080;
 
 let app = express();
 
-// app.use(express.static("public"));
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static("public"));
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+// Parse application body as JSON
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
+// Set Handlebars.
+let exphbs = require("express-handlebars");
 
-app.engine("handlebars", exhbs({
-    defaultLayout: "main"
-}));
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+// Import routes and give the server access to them.
 let routes = require("./controllers/burger_controller.js");
 
-app.use("/", routes);
+app.use(routes);
 
-app.listen(PORT);
+// Start our server so that it can begin listening to client requests.
+app.listen(PORT, function() {
+    // Log (server-side) when our server has started
+    console.log("Server listening on: http://localhost:" + PORT);
+});
