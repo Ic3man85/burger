@@ -2,26 +2,23 @@ let orm = require('../config/orm');
 
 let burger = {
 
-    selectAll: function(callback) {
-
-        orm.selectAll(function(err, res) {
-            if (err) throw err;
-            callback(res);
+    selectAll: function (cb) {
+        orm.selectAll(function (res) {
+            cb(res);
         });
     },
-    insertOne: function(callback) {
-        orm.insertOne(function(err, res) {
-            if (err) throw err;
-            callback(res);
+    insertOne: function (burger, cb) {
+        orm.insertOne(burger, function (res) {
+            cb(res);
         });
     },
-    updateOne: function(callback, id) {
-
-        orm.updateOne(function(err, res) {
-            if (err) throw err;
-            callback(res);
+    updateOne: function (id, cb) {
+        orm.updateOne([id], function (res) {
+            cb(res);
         });
     }
-}
+};
 
-module.exports = burger;
+
+
+    module.exports = burger;

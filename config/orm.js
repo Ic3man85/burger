@@ -1,32 +1,37 @@
 let connection = require("./connection");
 
-let orm = {
+var orm = {
 
-    selectAll: function(callback) {
-
-        const query = "SELECT * FROM burgers";
-        connection.query(query, function(err, result) {
-            if (err) throw err;
-            console.log(result);
-            callback(result);
+    selectAll: function (cb) {
+        var queryString = "SELECT * FROM burgers";
+        connection.query(queryString, function (err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
         });
     },
-    insertOne: function(callback, burger) {
-        const query = "INSERT INTO burgers (burger_name) VALUES (?)";
-        connection.query(query, [burger], function(err, result) {
-            if (err) throw err;
-            console.log(result);
-            callback(result);
+
+    insertOne: function (burger, cb) {
+        var queryString = "INSERT INTO burgers (burger_name) VALUES (?)";
+        connection.query(queryString, [burger], function (err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
         });
     },
-    updateOne: function(callback, id) {
-        const query = "UPDATE burgers SET devoured = true WHERE id = ?";
-        connection.query(query, [id], function(err, result) {
-            if (err) throw err;
-            console.log(result);
-            callback(result);
-        })
+
+    updateOne: function (id, cb) {
+        var queryString = "UPDATE burgers SET devoured = true WHERE id = ?";
+
+        connection.query(queryString, [id], function (err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
+        });
     }
-}
+};
 
 module.exports = orm;
