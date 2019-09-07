@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Manjari&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Manjari', sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.main-container {
+    width: 100%;
+    /* display: flex; */
+    display: grid;
+    grid-template-areas:
+        "head head head head head head head"
+        "left left middle middle middle right right";
+    grid-template-rows: 50px auto;
+    grid-template-columns: auto;
+}
+header {
+    grid-area: head;
+}
+
+.available_burgers {
+    grid-area: left;
+    background-color: yellow;
+    border: 2px solid black;
+}
+.burger_image {
+    grid-area: middle;
+    background-image: url("/images/louis-hansel-4FY6xU05qaQ-unsplash.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.devoured_burgers {
+    grid-area: right;
+    background-color: green;
+    border: 2px solid black;
+}

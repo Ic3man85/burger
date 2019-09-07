@@ -5,7 +5,7 @@ let router = express.Router();
 
 router.get("/", function (req, res) {
     burger.selectAll(function (data) {
-        var hbsObject = {
+        let hbsObject = {
             burgers: data
         };
         console.log(hbsObject);
@@ -20,7 +20,7 @@ router.post("/", function (req, res) {
 });
 
 router.put("/:id", function (req, res) {
-    var id = req.params.id;
+    let id = req.params.id;
 
     burger.updateOne(id, function () {
         devoured = true;
